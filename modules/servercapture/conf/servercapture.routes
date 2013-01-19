@@ -1,0 +1,9 @@
+# Routes
+# This file defines all core routes (Higher priority routes first)
+# ~~~~
+
+# Capture stuff
+POST 	/capimg					controllers.servercapture.capture.Capture.captureImage
+POST 	/captures2t						controllers.servercapture.capture.Capture.speechToText
+POST 	/captureflaudio						controllers.servercapture.capture.Capture.captureFlashAudio
+

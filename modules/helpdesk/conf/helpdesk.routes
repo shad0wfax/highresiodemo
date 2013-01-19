@@ -1,0 +1,7 @@
+# Routes
+# This file defines all helpdesk routes (Higher priority routes first)
+# ~~~~
+
+# 
+GET     /                           controllers.helpdesk.Application.index
+

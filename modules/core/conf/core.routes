@@ -1,0 +1,6 @@
+# Routes
+# This file defines all core routes (Higher priority routes first)
+# ~~~~
+
+# Serve assets
+GET 	/stream						controllers.core.asset.AssetStreamer.stream(aid:String, xtn:String, type:String)

@@ -1,0 +1,91 @@
+@(message: String, assets: Seq[Asset])
+
+@main(title = message) {
+	<link rel="stylesheet" href="@routes.Assets.at("css/bootstrap-toggle-animated.css")"  type="text/css" media="screen" />
+	<!-- Need bootstrap.js for tabs -->
+	<script src="@routes.Assets.at("js/bootstrap.min.js")"></script>
+	<script src="@routes.Assets.at("js/bootstrap-toggle.js")"></script>
+	    
+ 	@topnav("", "active")	
+ 
+ 
+    <div class="container">
+      <div class="page-header">
+        <h4>Dashboard - Helpdesk and Administration tool in the cloud</h4>
+      </div>
+
+		<div>
+			<ul class="breadcrumb">
+			  <li><a href="/dashboard">Dashboard</a> <span class="divider">/</span></li>
+			  <li><a href="#">{YourCompany}</a> <span class="divider">/</span></li>
+			  <li class="active">{demo.visualrendezvous.com}</li>
+			  <li class="active">{companies can setup Visual Rendezvous features for multiple domains}</li>
+			</ul>
+		</div>
+
+		<div class="tabbable" style="margin-bottom: 18px;">
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab1" data-toggle="tab">Funnels</a></li>
+            <li><a href="#tab2" data-toggle="tab">Services</a></li>
+            <li><a href="#tab10" data-toggle="tab">Administration</a></li>
+            <li><a href="#tab3" data-toggle="tab">Highlights</a></li>
+            <li><a href="#tab4" data-toggle="tab">Photos</a></li>
+            <li><a href="#tab5" data-toggle="tab">Speech To Texts</a></li>
+            <li><a href="#tab6" data-toggle="tab">Audios</a></li>
+            <li><a href="#tab7" data-toggle="tab">Videos</a></li>
+            <li><a href="#tab8" data-toggle="tab">All</a></li>
+            <li><a href="#tab9" data-toggle="tab">Analytics</a></li>
+          </ul>
+          <div class="tab-content" style="padding-bottom: 9px; border-bottom: 1px solid #ddd;">
+            <div class="tab-pane  active" id="tab1">
+              @dash.dashboardfunnel("hello")
+            </div>
+            <div class="tab-pane" id="tab2">
+              @dash.dashboardservices("hello")
+            </div>
+            <div class="tab-pane" id="tab3">
+              @dash.dashboardfeedbackitems(assets,"web#highlight")
+            </div>
+            <div class="tab-pane" id="tab4">
+              @dash.dashboardfeedbackitems(assets,"web#photo")
+            </div>
+            <div class="tab-pane" id="tab5">
+              @dash.dashboardfeedbackitems(assets,"web#speech2text")
+            </div>
+            <div class="tab-pane" id="tab6">
+              @dash.dashboardfeedbackitems(assets,"web#audioflash")
+            </div>
+            <div class="tab-pane" id="tab7">
+              <p>Coming soon...</p>
+            </div>
+            <div class="tab-pane" id="tab8">
+              @dash.dashboardfeedbackitems(assets)
+            </div>
+            <div class="tab-pane" id="tab9">
+              @dash.dashboardanalytics("hello")
+            </div>
+            <div class="tab-pane" id="tab10">
+              @dash.dashboardadmin("Hello")
+            </div>
+          </div>
+        </div>
+
+
+		<div class="alert alert-original">
+ 			<button type="button" class="close" data-dismiss="alert">&times;</button>
+        
+	        <p>
+	        	This demo Dashboard page shows the content an Admin of the website (our customer) will see. 
+	        	Every company will get its own Dashboard and can perform several tasks from here. 
+	         </p>
+			<span class="label label-inverse">For this demo, Dashboard is built on the data collected from the Demo-Client page.</span><br/> 
+			<span class="label label-inverse">The Dashboard has many placeholder items and will constantly evolve as we ship features.</span>
+		</div>
+
+    </div> <!-- /container -->
+    
+}
+
+
+
+
