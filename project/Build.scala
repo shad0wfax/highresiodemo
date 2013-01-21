@@ -48,8 +48,8 @@ object ApplicationBuild extends Build {
 
   lazy  val main = play.Project(appName, appVersion, mainDeps).settings(
       // Add your own project settings here
-      templatesImport += "models.core._"
-      
+      templatesImport ++= Seq("models.core._")
+      //templatesImport += "models.core._" 
   ).dependsOn(
       core, servercapture, helpdesk
   ).aggregate(

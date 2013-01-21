@@ -3,5 +3,40 @@
 # ~~~~
 
 # 
-GET     /                           controllers.helpdesk.Application.index
+GET     /                           controllers.helpdesk.Helpdesk.index
 
+GET 	/tickets/highlights			controllers.helpdesk.Helpdesk.index
+GET 	/tickets/photos			controllers.helpdesk.Helpdesk.index
+GET 	/tickets/audios			controllers.helpdesk.Helpdesk.index
+GET 	/tickets/s2t			controllers.helpdesk.Helpdesk.index
+GET 	/tickets/videos			controllers.helpdesk.Helpdesk.index
+# GET 	/tickets/screenrecordings			controllers.helpdesk.Helpdesk.index
+GET 	/tickets/simple			controllers.helpdesk.Helpdesk.index
+GET 	/tickets/all			controllers.helpdesk.Helpdesk.index
+
+# GET 	/funnels/about			controllers.helpdesk.Helpdesk.index
+# GET 	/funnels/new			controllers.helpdesk.Helpdesk.index
+GET 	/funnels/configure			controllers.helpdesk.Helpdesk.index
+
+GET 	/services/configure			controllers.helpdesk.Helpdesk.index
+# GET 	/services/settings			controllers.helpdesk.Helpdesk.index
+
+GET 	/analytics/trends			controllers.helpdesk.Helpdesk.index
+GET 	/analytics/reports			controllers.helpdesk.Helpdesk.index
+GET 	/analytics/insights			controllers.helpdesk.Helpdesk.index
+# GET 	/analytics/performance			controllers.helpdesk.Helpdesk.index
+
+# GET 	/settings/general			controllers.helpdesk.Helpdesk.index
+GET 	/settings/notifications			controllers.helpdesk.Helpdesk.index
+GET 	/settings/rules			controllers.helpdesk.Helpdesk.index
+# GET 	/settings/template			controllers.helpdesk.Helpdesk.index
+GET 	/settings/integrations			controllers.helpdesk.Helpdesk.index
+
+GET 	/admin/apikey			controllers.helpdesk.Helpdesk.index
+GET 	/admin/agents			controllers.helpdesk.Helpdesk.index
+GET 	/admin/roles			controllers.helpdesk.Helpdesk.index
+# GET 	/admin/groups			controllers.helpdesk.Helpdesk.index
+GET 	/admin/companies			controllers.helpdesk.Helpdesk.index
+# GET 	/admin/people			controllers.helpdesk.Helpdesk.index
+
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
