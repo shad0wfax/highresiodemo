@@ -5,18 +5,23 @@
 // -----------------------------------
 
 @import 'libs/_reset.less';
-@import 'libs/_mate.less';
+//@import 'libs/_mate.less';
 @import 'libs/_theme.less';
+@import url('//fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700');
+
 
 // ----------------------- MAIN STYLES
 body {
     background: @mainBackground;
     color: @mainColor;
-    font: @defaultFont;
+    //font: @defaultFont;
+    font-family:"Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:15px;
+    line-height:21px;
     -webkit-font-smoothing: antialised;
     -webkit-user-select: none;
 }
-
+/*
 a {
     color: @links;
     text-decoration: none;
@@ -24,12 +29,61 @@ a {
         color: @linksHover;
     }
 }
+*/
 
-// --------------------------- IMPORTS
-@import 'main/_layout.less';        // General grid
-@import 'main/_widgets.less';       // Some shared elements
-@import 'main/_drawer.less';        // Project drawer
-@import 'main/_header.less';        // Top header + User bar
-@import 'main/_breadcrumb.less';    // Breadcrumb + App menu
-@import 'apps/_tasks.less';         // Tasks 
+body {
+    & >
+	leftnav {
+        position: absolute;
+        top: @headerHeight;
+        left: 0;
+        width: @drawerWidth;
+        bottom: 0;
+        box-sizing: border-box;
+        padding: 10px 0 0;
+        background: @drawerBackground;
+        border-right: 1px solid @layoutBorderColor;
+	}
+	
+}
 
+.leftnavpane {
+    display: block;
+    position: relative;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 10px 5px 5px 25px;
+    background: url(/assets/images/icons/home.png) 6px 10px no-repeat;
+    line-height: 21px;
+}
+.leftnavpane a {
+    color: @folderColor;
+    cursor: default;
+    text-decoration:none;
+}
+.leftnavpane a:hover{
+	color:#2a5e88;
+}
+
+.leftnavpane h4 {
+   cursor: default;
+}
+#navgroups {font: 13px "Lucida Grande", "Helvetica Neue", sans-serif;}
+#navgroups input{margin:0;padding:0;border:0;font:inherit;}
+#navgroups li{position:relative;padding:6px 0px 5px 25px;line-height: 15px;}
+#navgroups>li .options{position:absolute;top:7px;right:5px;}
+#navgroups>li .options button{border:none;}
+#navgroups>li .loader{top:8px;right:6px;}
+#navgroups>li li{position:relative;padding:0 0 0 25px;background:url(/assets/images/icons/folder.png) 1px 1px no-repeat;}
+#navgroups>li li a{display:block;color:#2a3a48;padding:2px;text-decoration:none;}
+#navgroups>li li input[type=text]{padding:2px 1px;}
+#navgroups>li li .delete{opacity:0.1;}
+#navgroups>li li .loader{top:2px;right:2px;}
+#navgroups>li li:hover a{color:#000;}
+#navgroups>li li:hover .delete{opacity:1;}
+#navgroups>li .grptoggleopen{content:" ";position:absolute;left:8px;top:12px;display:inline-block;width:12px;height:12px;vertical-align:middle;background:url(/assets/images/icons/drawer.folder.png) 0 0 no-repeat;}
+#navgroups>li .grptoggleclosed{content:" ";position:absolute;left:8px;top:12px;display:inline-block;width:12px;height:12px;vertical-align:middle;background:url(/assets/images/icons/drawer.folder.png) 0 -20px no-repeat;}
+#navgroups>li>h4{display:block;margin:0 0 5px;padding:0 1px;position:relative;color:#6f8193;font-size:11px;font-weight:700;text-transform:uppercase;}
+#navgroups>li>input{margin:0 0 5px;text-transform:uppercase;font-weight:bold;font-size:11px;}
+#navgroups>li.closed .grptoggle{background-position:0 -20px;}

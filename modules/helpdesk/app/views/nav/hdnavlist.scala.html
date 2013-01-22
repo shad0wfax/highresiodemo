@@ -1,9 +1,9 @@
 @(items: Seq[NavItem])
 
-<li>
-    <span class="toggle"></span>
+<li id="grptoggleli">
+    <span class="grptoggleopen"></span>
     <h4 class="groupName">@items(0).group</h4>
-    <ul>
+    <ul class="groupElemns">
         @items.map { item =>
             @views.html.nav.hdnavitems(item)
         }

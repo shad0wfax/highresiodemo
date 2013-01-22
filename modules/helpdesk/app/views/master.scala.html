@@ -1,18 +1,41 @@
 @(title: String = "HighResIo Helpldesk")(body: Html) 
 
-<html>
-    <head>
-        <title>@title</title>
-        <!-- Favico from main project -->
-        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("img/favicon.ico")">
-        <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/helpdesk.min.css")">
-        <script type="text/javascript" src="@routes.Assets.at("javascripts/underscore-min.js")"></script>
-        <script type="text/javascript" src="@routes.Assets.at("javascripts/backbone-min.js")"></script>
-        <script type="text/javascript" src="@routes.Assets.at("javascripts/helpdesk.min.js")"></script>
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>@title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Akshay">
+
+	<link rel="shortcut icon" type="image/ico" href="@routes.Assets.at("img/favicon.ico")">
+
+    <link rel="stylesheet" href="@routes.Assets.at("css/bootstrap_spacelab_min.css")"  type="text/css" media="screen" />
+	<link href="@routes.Assets.at("css/bootstrap-responsive.min.css")" rel="stylesheet">    
+	<link rel="stylesheet" href="@routes.Assets.at("css/bootstrap-toggle-animated.css")"  type="text/css" media="screen" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/helpdesk.min.css")">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+      }
+    </style>
         
+	<script type="text/javascript" src="@routes.Assets.at("js/jquery-twitter.js")"></script>
+    <script type="text/javascript" src="@routes.Assets.at("javascripts/underscore-min.js")"></script>
+    <script type="text/javascript" src="@routes.Assets.at("javascripts/backbone-min.js")"></script>
+    <script type="text/javascript" src="@routes.Assets.at("javascripts/helpdesk.min.js")"></script>
+    
+	<!-- Need bootstrap.js for tabs -->
+	<script src="@routes.Assets.at("js/bootstrap.min.js")"></script>
+	<script src="@routes.Assets.at("js/bootstrap-toggle.js")"></script>
+    
     </head>
     <body>
-        <header>
+
+
+<!--         <header>
             <a href="/" id="logo">Visual <span>Rendezvous</span></a>
             <dl id="user">
                 <dt>Akshay Sharma<span> (akshay@@highres.io)</span></dt>
@@ -21,20 +44,46 @@
                 </dd>
             </dl>
         </header>
-        <nav>
-            <h4 class="dashboard"><a href="#/">H</a></h4>
+ -->
+	 	@parenttopnav("", "active")	
+
+        <leftnav>
+        	<div >
+            <h4 class="leftnavpane"><a href="#/">Helpdesk</a></h4>
             
-            <ul id="projects">
+            <ul id="navgroups">
             	@defining(views.util.NavList.navigation) {items =>
             		@for((key, groupnavitems) <- items) {
             		  @views.html.nav.hdnavlist(groupnavitems)
             		}
                 }
             </ul>
-        </nav>
+           </div>
+        </leftnav>
         <section id="main">
             @body
         </section>
     </body>
+ 	<script type="text/javascript">
+		 $(document).ready(function () {
+		     $('li#grptoggleli').click(function (e) {
+		         //e.preventDefault();
+		         var grp = $(this).children(".groupElemns")
+		         
+		         if ($(grp).css("display") == "none") {
+			        // handle non visible state
+			        $(this).children(".grptoggleclosed").removeClass("grptoggleclosed").addClass("grptoggleopen")
+		        	 $(grp).show("fast");   
+		        	 
+			     } else {
+			        // handle visible state
+			        $(this).children(".grptoggleopen").removeClass("grptoggleopen").addClass("grptoggleclosed")
+			    	 $(grp).hide("fast");
+			    	 
+			     }
+		     });
+		 });
+	</script>
+    
 </html>
 
