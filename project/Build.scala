@@ -43,8 +43,13 @@ object ApplicationBuild extends Build {
   
   lazy val helpdesk = play.Project(
     appName + "-helpdesk", appVersion, helpdeskDeps, path = file("modules/helpdesk")
-  ).dependsOn(core)
-   .aggregate(core)
+  ).settings(
+       templatesImport ++= Seq("models.core._")
+  ).dependsOn(
+      core
+  ).aggregate(
+      core
+  )
 
   lazy  val main = play.Project(appName, appVersion, mainDeps).settings(
       // Add your own project settings here

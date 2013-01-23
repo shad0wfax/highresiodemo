@@ -1,4 +1,4 @@
-@(title: String = "HighResIo Helpldesk")(body: Html) 
+@(crumb: String, title: String = "HighResIo Helpldesk")(body: Html) 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,21 +35,11 @@
     <body>
 
 
-<!--         <header>
-            <a href="/" id="logo">Visual <span>Rendezvous</span></a>
-            <dl id="user">
-                <dt>Akshay Sharma<span> (akshay@@highres.io)</span></dt>
-                <dd>
-                    <a href="#">Logout</a>
-                </dd>
-            </dl>
-        </header>
- -->
-	 	@parenttopnav("", "active")	
+	 	@nav.parenttopnav("", "active")	
 
         <leftnav>
         	<div >
-            <h4 class="leftnavpane"><a href="#/">Helpdesk</a></h4>
+            <h4 class="leftnavpane"><a href="/helpdesk">Helpdesk</a></h4>
             
             <ul id="navgroups">
             	@defining(views.util.NavList.navigation) {items =>
@@ -60,9 +50,15 @@
             </ul>
            </div>
         </leftnav>
-        <section id="main">
-            @body
-        </section>
+        <div class="hdcontent">
+        	<div class="hdcontheader">
+        		@hdbreadcrumbs(crumb)
+        	</div>
+        	<div  class="hdcontmaterial">
+        		@body
+        	</div>
+        	
+        </div>
     </body>
  	<script type="text/javascript">
 		 $(document).ready(function () {

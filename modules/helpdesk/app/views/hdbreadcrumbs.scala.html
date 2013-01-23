@@ -1,0 +1,16 @@
+@(crumb: String) 
+
+	<ul class="hdbreadcrumb">
+	  <li><a href="/helpdesk">Helpdesk</a>
+	  @if(crumb == "") {
+	  	</li>
+	  } else {
+	  	<span class="divider">/</span></li>
+		<li class="active">@crumb</li>	  		
+	  }
+	  <li style="position:absolute; right:100px; font-weight:normal; text-transform: none;padding-top: 5px">Admin</li>
+	  <li style="position:absolute; right:10px;vertical-align: top;"><a class="btn btn-success btn-small">Logout</a></li>
+	 </ul>
+
+
+

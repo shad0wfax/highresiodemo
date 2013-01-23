@@ -1,0 +1,45 @@
+@(assets:Seq[Asset], ref: String = "")
+@import java.text.SimpleDateFormat
+
+ <div class="hdtickets">
+ 
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+	      @if(ref == "s2t") {
+	      	<th>Speech to Text</th>
+	      } else {
+	      	@if(ref == "image") {
+	      		<th>Preview (hover)</th>
+	      	} else {
+	      		<th>Preview</th>
+	      	}
+	      }
+	      <th>Email</th>
+	      <th>Comment</th>
+	      <th>Date</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	@for(asset <- assets) {
+  	 	   <tr>
+	  		@if(asset.assetType == "image") {
+	  			<td><img src="/core/stream?aid=@asset.content&xtn=png&type=image" class="hdimgzoom"/></td>
+	  		} else {
+	  			@if(asset.assetType == "audio") {
+	  				<td><audio controls="controls"><source src="/core/stream?aid=@asset.content&xtn=wav&type=audio" /></audio></td>
+	  			} else {
+	  				<td>@asset.content.substring(0, Math.min(asset.content.length(), 37))...</td>
+	  			}
+	  		}
+			  	<td>@asset.email</td>
+			  	<td>@asset.comment.substring(0, Math.min(asset.comment.length(), 47))...</td>
+			  	<td>@{new SimpleDateFormat("MMM-dd-yyyy").format(asset.created)}</td>
+		  </tr>
+	  	}
+		  
+	  </tbody>
+	</table>
+
+</div>
+ 

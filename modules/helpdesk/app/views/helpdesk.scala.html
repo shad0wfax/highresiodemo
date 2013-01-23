@@ -1,23 +1,24 @@
 @(title: String = "Dashboard")
 
-@master(){
-    
-    <header>
-        <hgroup>
-            <h1>@title</h1>
-            <h2>Manage everything here</h2>
-        </hgroup>
-    </header>
-    
-    <article  class="tasks">
-                <div class="folder" data-folder-id="1">
-                    <header>
-                        <h3><a href="#">Projec1</a></h3>
-                        <span class="loader">Loading</span>
-                    </header>
-                    <ul class="list">
-                    </ul>
-                </div>
-    </article>
+@master(""){
+
+    <div class="container">
+      <div class="page-header">
+        <h4>Helpdesk and Administration tool in the cloud</h4>
+      </div>
+
+		<div class="alert alert-original">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+	       
+	        <p>
+	        	This demo Helpdesk page shows the content an Admin of the website (our customer) will see. 
+	        	Every company will get its own Helpdesk and can perform several tasks from here. 
+	         </p>
+			<span class="label label-inverse">For this demo, Helpdesk is built on the data collected from the Demo-Client page.</span><br/> 
+			<span class="label label-inverse">The Helpdesk has many placeholder items and will constantly evolve as we ship features.</span>
+		</div>
+
+    </div> <!-- /container -->
+
 }
 

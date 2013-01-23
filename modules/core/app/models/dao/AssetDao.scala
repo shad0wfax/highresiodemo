@@ -21,7 +21,6 @@ import models.core.Asset
 import models.core.FileAsset
 import models.core.CaptureResource
 
-
 /**
  * @author Akshay Sharma
  * Dec 25, 2012
@@ -125,6 +124,14 @@ object AssetDao {
     DB.withConnection { implicit connection =>
       SQL("select * from asset_capture where asset_type = {assetType}")
       	.on("assetType" -> asset.assetType)
+      	.as(AssetDao.simple *)
+    }
+  }
+
+  def allForRefs(ref: String): Seq[Asset] = {
+    DB.withConnection { implicit connection =>
+      SQL("select * from asset_capture where ref = {ref}")
+      	.on("ref" -> ref)
       	.as(AssetDao.simple *)
     }
   }

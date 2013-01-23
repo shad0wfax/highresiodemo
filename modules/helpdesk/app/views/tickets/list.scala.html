@@ -1,0 +1,15 @@
+@(message: String, crumb: String, title: String, assets: Seq[Asset], ref: String)
+@import models.core.Asset
+
+@master(crumb = crumb, title = title) {
+ 
+    <div class="container">
+      <div class="page-header">
+        <h4><span style="font-weight: bold">@message</span></h4>
+      </div>
+      
+	@tickets.items(assets, ref)
+	
+    </div> <!-- /container -->
+    
+}
