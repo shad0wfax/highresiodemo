@@ -807,9 +807,9 @@ a.thumbnail:hover{border-color:#0099dd;-webkit-box-shadow:0 1px 4px rgba(0, 105,
 .label:empty,.badge:empty{display:none;}
 a.label:hover,a.badge:hover{color:#ffffff;text-decoration:none;cursor:pointer;}
 .label-important,.badge-important{background-color:#ffffff;}
-.label-important[href],.badge-important[href]{background-color:#e6e6e6;}
-.label-warning,.badge-warning{background-color:#d47500;}
-.label-warning[href],.badge-warning[href]{background-color:#a15900;}
+.label-important[href],.badge-important[href]{background-color:#953b39;}
+.label-warning,.badge-warning{background-color:#f89406;}
+.label-warning[href],.badge-warning[href]{background-color:#c67605;}
 .label-success,.badge-success{background-color:#ffffff;}
 .label-success[href],.badge-success[href]{background-color:#e6e6e6;}
 .label-info,.badge-info{background-color:#ffffff;}
@@ -896,7 +896,7 @@ div.subnav .nav>li.dropdown.open>.dropdown-toggle{border-left:1px solid whiteSmo
 .control-group.success input,.control-group.success select,.control-group.success textarea{border-color:#2ba949;-webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075);-moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075);box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075);}.control-group.success input:focus,.control-group.success select:focus,.control-group.success textarea:focus{border-color:#218037;-webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075),0 0 6px #63d77e;-moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075),0 0 6px #63d77e;box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075),0 0 6px #63d77e;}
 .control-group.success .input-prepend .add-on,.control-group.success .input-append .add-on{color:#2ba949;background-color:#3cb521;border-color:#2ba949;}
 .alert{text-shadow:0 -1px 0 rgba(0, 0, 0, 0.25);}.alert h1,.alert h2,.alert h3,.alert h4,.alert h5,.alert h6{color:#ffffff;font-weight:bold;text-shadow:0 -1px 0 rgba(0, 0, 0, 0.25);}
-.label,.badge{padding-top:4px;}.label-important,.badge-important{background-color:#cd0200;}
+.label,.badge{padding-top:4px;}.label-important,.badge-important{background-color:#b94a48}
 .label-warning,.badge-warning{background-color:#d47500;}
 .label-success,.badge-success{background-color:#3cb521;}
 .label-info,.badge-info{background-color:#3399f3;}

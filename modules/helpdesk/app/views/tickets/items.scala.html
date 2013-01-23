@@ -6,6 +6,9 @@
 	<table class="table table-striped">
 	  <thead>
 	    <tr>
+	      @if(ref == "all") {	
+	      	<th>Type</th>
+	      }
 	      @if(ref == "s2t") {
 	      	<th>Speech to Text</th>
 	      } else {
@@ -23,6 +26,9 @@
 	  <tbody>
 	  	@for(asset <- assets) {
   	 	   <tr>
+		    @if(ref == "all") {	
+  	 	   	  <td><i class="@views.util.HelpdeskDisplayUtil.iconForAssetType(asset)"></i></td>
+		    }
 	  		@if(asset.assetType == "image") {
 	  			<td><img src="/core/stream?aid=@asset.content&xtn=png&type=image" class="hdimgzoom"/></td>
 	  		} else {

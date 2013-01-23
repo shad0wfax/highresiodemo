@@ -60,7 +60,7 @@ object Emailer {
       .post(url)
       .auth("api", key)
       .params(sendParams(capture, "Audio content has been sent. A link to it is : " + 
-          "http://demo.visualrendezvous.com:9000/core/stream?aid=" + capture.content + "&xtn=wav&type=audio"))
+          "http://demo.visualrendezvous.com/core/stream?aid=" + capture.content + "&xtn=wav&type=audio"))
       .asString
       handle(response)
   }

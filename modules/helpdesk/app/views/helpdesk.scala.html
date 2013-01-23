@@ -1,10 +1,51 @@
 @(title: String = "Dashboard")
 
-@master(""){
+@master("Dashboard", title = title){
 
     <div>
       <div class="page-header">
-        <h4>Helpdesk and Administration tool in the cloud</h4>
+        <h4>Dashboard - Helpdesk overview</h4>
+      </div>
+		<div class="hdstatwrapper">		
+		  <div class="hdstat" data-hdurl="/helpdesk/tickets/highlights">  			
+			<div class="statbox bluebg">
+		      <i class="icon-pencil icon-white" style="margin-top: 8px;"></i>
+		      <span class="badge badge-important">100</span>
+		      <span class="badge badge-success">20</span>
+		      <span class="badge ">14</span>
+		      <span class="statlabel">Highlights</span>
+		    </div>
+		  </div>
+		   	
+		  <div class="hdstat" data-hdurl="/helpdesk/tickets/photos">  			
+			<div class="statbox darkbluebg">
+		      <i class="icon-camera icon-white" style="margin-top: 8px;"></i>
+		      <span class="badge badge-important">100</span>
+		      <span class="badge badge-success">20</span>
+		      <span class="badge ">14</span>
+		      <span class="statlabel">Photos</span>
+		    </div>
+		  </div>
+	
+		  <div class="hdstat" data-hdurl="/helpdesk/tickets/audios">  			
+			<div class="statbox bluegraybg">
+		      <i class="icon-headphones icon-white" style="margin-top: 8px;"></i>
+		      <span class="badge badge-important">100</span>
+		      <span class="badge badge-success">20</span>
+		      <span class="badge ">14</span>
+		      <span class="statlabel">Audios</span>
+		    </div>
+		  </div>
+	
+		  <div class="hdstat" data-hdurl="/helpdesk/tickets/s2t">  			
+			<div class="statbox darkbluegreenbg">
+		      <i class="icon-text-width icon-white" style="margin-top: 8px;"></i>
+		      <span class="badge badge-important">100</span>
+		      <span class="badge badge-success">20</span>
+		      <span class="badge ">14</span>
+		      <span class="statlabel">Speech to Text</span>
+		    </div>
+		 </div>
       </div>
 
 		<div class="alert alert-original">
@@ -18,7 +59,18 @@
 			<span class="label label-inverse">The Helpdesk has many placeholder items and will constantly evolve as we ship features.</span>
 		</div>
 
-    </div> <!-- /container -->
-
+	</div>
+	
+ 	<script type="text/javascript">
+		 $(document).ready(function () {
+		     $('.hdstat').click(function (e) {
+		    	 var link = $(this).attr("data-hdurl");
+		    	 if (link.length) {
+		    		 window.location = link;
+				 }
+		     });
+		 });
+	</script>
+	
 }
 
