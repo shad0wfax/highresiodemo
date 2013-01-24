@@ -3,9 +3,8 @@
  */
 package views.util
 
-import models.NavItem
+import models.helpdesk.NavItem
 import models.core._
-import play.api.cache._
 import play.api.Play.current
 import scala.collection.immutable.TreeMap
 import scala.collection.immutable.Map
@@ -22,7 +21,7 @@ object HelpdeskDisplayUtil {
   lazy val navigation: Map[Int, Seq[NavItem]] = TreeMap(navlist.groupBy(_.groupNum).toSeq:_*)
 
   private def navlist: Seq[NavItem] = {
-    Cache.getAs[Seq[NavItem]]("hdnavlist").get
+    NavItem.all
   }
   
   def iconForAssetType(asset: Asset): String = (asset.ref: @unchecked) match {
@@ -37,6 +36,13 @@ object HelpdeskDisplayUtil {
     case _ => assets match {
 	    case Nil => ""
 	    case x :: xs => iconForAssetType(x)
+    }
+  }
+  
+  def countTickets(ref: String, groupedAssets: Map[String, Seq[Asset]]): String = {
+    groupedAssets.get(ref) match {
+      case None => "0"
+      case Some(x) => "" + x.size
     }
   }
   

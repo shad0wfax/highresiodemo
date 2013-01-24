@@ -4,11 +4,10 @@
 package controllers.helpdesk
 
 import play.api.mvc._
-//import scala.concurrent.duration.DurationInt
-//import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import models.core.dao.AssetDao
 import models.core.Asset
 import models.core.CaptureConstants
+import models.helpdesk.HDStat
 
 
 /**
@@ -17,7 +16,7 @@ import models.core.CaptureConstants
  */
 object Helpdesk extends Controller {
   def index = Action {
-    Ok(views.html.helpdesk("Demo - HighResIo"))
+    Ok(views.html.helpdesk(HDStat.dashboardStat, "Demo - HighResIo"))
   }
   
   def ticketsAll = Action {

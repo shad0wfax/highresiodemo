@@ -1,10 +1,11 @@
 /**
  * copyright VisualRendezvous
  */
-package models
+package models.helpdesk
 
 import play.api.db._
 import play.api.Play.current
+import play.api.cache._
 
 import anorm._
 import anorm.SqlParser._
@@ -18,6 +19,7 @@ case class NavItem(group: String, item: String, relativeUrl: String, groupNum: I
 
 
 object NavItem {
+  private val CACHE_KEY = "hdnavlist"
   
     // Parse a ImageCapture from a ResultSet
   private val simple = {
@@ -51,10 +53,18 @@ object NavItem {
   }
   
   def all(): Seq[NavItem] = {
-    DB.withConnection { implicit connection =>
-      SQL("select * from hd_nav_item")
-      	.as(NavItem.simple *)
+    val all = Cache.getAs[Seq[NavItem]](CACHE_KEY)
+    
+    all match {
+      case None =>     DB.withConnection { implicit connection =>
+					      SQL("select * from hd_nav_item")
+					      	.as(NavItem.simple *)
+					    }
+      case _ => all.get
     }
   }
-
+  
+  def cache(items: Seq[NavItem]) = {
+    Cache.set(CACHE_KEY, items)
+  }
 }

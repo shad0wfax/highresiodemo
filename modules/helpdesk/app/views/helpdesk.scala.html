@@ -1,4 +1,7 @@
-@(title: String = "Dashboard")
+@(stat: Map[String, Seq[Asset]],	 title: String = "Dashboard")
+@import models.core.Asset
+@import scala.collection.immutable.Map
+@import models.core.CaptureConstants
 
 @master("Dashboard", title = title){
 
@@ -10,9 +13,7 @@
 		  <div class="hdstat" data-hdurl="/helpdesk/tickets/highlights">  			
 			<div class="statbox bluebg">
 		      <i class="icon-pencil icon-white" style="margin-top: 8px;"></i>
-		      <span class="badge badge-important">100</span>
-		      <span class="badge badge-success">20</span>
-		      <span class="badge ">14</span>
+		      <span class="badge badge-important">@views.util.HelpdeskDisplayUtil.countTickets(CaptureConstants.HIGHLIGHT, stat)</span>
 		      <span class="statlabel">Highlights</span>
 		    </div>
 		  </div>
@@ -20,9 +21,7 @@
 		  <div class="hdstat" data-hdurl="/helpdesk/tickets/photos">  			
 			<div class="statbox darkbluebg">
 		      <i class="icon-camera icon-white" style="margin-top: 8px;"></i>
-		      <span class="badge badge-important">100</span>
-		      <span class="badge badge-success">20</span>
-		      <span class="badge ">14</span>
+		      <span class="badge badge-important">@views.util.HelpdeskDisplayUtil.countTickets(CaptureConstants.PHOTO, stat)</span>
 		      <span class="statlabel">Photos</span>
 		    </div>
 		  </div>
@@ -30,9 +29,7 @@
 		  <div class="hdstat" data-hdurl="/helpdesk/tickets/audios">  			
 			<div class="statbox bluegraybg">
 		      <i class="icon-headphones icon-white" style="margin-top: 8px;"></i>
-		      <span class="badge badge-important">100</span>
-		      <span class="badge badge-success">20</span>
-		      <span class="badge ">14</span>
+		      <span class="badge badge-important">@views.util.HelpdeskDisplayUtil.countTickets(CaptureConstants.AUDIO_FLASH, stat)</span>
 		      <span class="statlabel">Audios</span>
 		    </div>
 		  </div>
@@ -40,9 +37,7 @@
 		  <div class="hdstat" data-hdurl="/helpdesk/tickets/s2t">  			
 			<div class="statbox darkbluegreenbg">
 		      <i class="icon-text-width icon-white" style="margin-top: 8px;"></i>
-		      <span class="badge badge-important">100</span>
-		      <span class="badge badge-success">20</span>
-		      <span class="badge ">14</span>
+		      <span class="badge badge-important">@views.util.HelpdeskDisplayUtil.countTickets(CaptureConstants.S2T, stat)</span>
 		      <span class="statlabel">Speech to Text</span>
 		    </div>
 		 </div>
@@ -55,8 +50,8 @@
 	        	This demo Helpdesk page shows the content an Admin of the website (our customer) will see. 
 	        	Every company will get its own Helpdesk and can perform several tasks from here. 
 	         </p>
-			<span class="label label-inverse">For this demo, Helpdesk is built on the data collected from the Demo-Client page.</span><br/> 
-			<span class="label label-inverse">The Helpdesk has many placeholder items and will constantly evolve as we ship features.</span>
+			<span class="label ">For this demo, Helpdesk is built on the data collected from the Demo-Client page.</span><br/> 
+			<span class="label ">The Helpdesk has many placeholder items and will constantly evolve as we ship features.</span>
 		</div>
 
 	</div>

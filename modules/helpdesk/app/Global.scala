@@ -1,38 +1,54 @@
+/**
+ * copyright VisualRendezvous
+ */
+import play.api.db._
+import play.api.Play.current
+import anorm._
+import anorm.SqlParser._
 import play.api._
 import play.api.cache._
 import play.api.Play.current
-
-import models._
 import anorm._
+import models.helpdesk.TicketStatus
+import models.helpdesk.NavItem
 
 
+/**
+ * 
+ * @author Akshay Sharma
+ * Jan 20, 2013
+ */
 object Global extends GlobalSettings {
   
   override def onStart(app: Application) {
-    InitialData.insert()
+    Logger.debug("onStart - Calling inserts and init")
+    val navitems = Navigation.init
+    val statuses = Ticketstatus.init
+    NavItem.cache(navitems)
+    TicketStatus.cache(statuses)
+    
   }
   
 }
 
 /**
- * Initial set of data to be imported 
- * in the sample application.
+ * Helpdesk Navigation
  */
-object InitialData {
+object Navigation {
 
-  def insert() = {
+  def init: Seq[NavItem] = {
     val items = NavItem.all
     if(items.isEmpty) {
       
       Seq(
-        NavItem("Tickets", "Highlights", "tickets/highlights", 1),
-        NavItem("Tickets", "Photos", "tickets/photos", 1),
-        NavItem("Tickets", "Audios", "tickets/audios", 1),
-        NavItem("Tickets", "Speech to Texts", "tickets/s2t", 1),
-        NavItem("Tickets", "Videos", "tickets/videos", 1),
-//        NavItem("Tickets", "Screen Recordings", "tickets/screenrecordings", 1),
-        NavItem("Tickets", "Email/ Form/ Direct", "tickets/simple", 1),
-        NavItem("Tickets", "All Tickets", "tickets/all", 1),
+        NavItem("Tickets / Captures", "Highlights", "tickets/highlights", 1),
+        NavItem("Tickets / Captures", "Photos", "tickets/photos", 1),
+        NavItem("Tickets / Captures", "Audios", "tickets/audios", 1),
+        NavItem("Tickets / Captures", "Speech to Texts", "tickets/s2t", 1),
+        NavItem("Tickets / Captures", "Videos", "tickets/videos", 1),
+//        NavItem("Tickets / Captures", "Screen Recordings", "tickets/screenrecordings", 1),
+        NavItem("Tickets / Captures", "Email/Form/Direct", "tickets/simple", 1),
+        NavItem("Tickets / Captures", "All Tickets/Captures", "tickets/all", 1),
 
 //        NavItem("Funnels", "About", "funnels/about", 2),
         NavItem("Funnels", "Configure", "funnels/configure", 2),
@@ -60,13 +76,32 @@ object InitialData {
 //        NavItem("Administration", "People", "admin/people", 6)
       ).foreach(NavItem.create)
     }
-    
-    val cacheNav = items.isEmpty match {
+    items.isEmpty match {
       case true => NavItem.all
       case false => items
     }
-    
-    Cache.set("hdnavlist", cacheNav)
   }
+}
   
+/**
+ * Helpdesk Navigation
+ */
+object Ticketstatus {
+
+  def init: Seq[TicketStatus] = {
+    val statuses = TicketStatus.all
+    if(statuses.isEmpty) {
+      
+      Seq(
+        TicketStatus("Open"),
+        TicketStatus("Closed"),
+        TicketStatus("Hold")
+      ).foreach(TicketStatus.create)
+    }
+    statuses.isEmpty match {
+      case true => TicketStatus.all
+      case false => statuses
+    }
+  }
+
 }
