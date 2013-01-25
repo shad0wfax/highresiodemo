@@ -20,6 +20,10 @@ import models.core.Speech2Text
 import models.core.Asset
 import models.core.FileAsset
 import models.core.CaptureResource
+import models.core.Video
+import models.core.Speech2Text
+import java.util.NoSuchElementException
+import models.core.Video
 
 /**
  * @author Akshay Sharma
@@ -43,6 +47,7 @@ object AssetDao {
         	case "image" => Image(email, comment, content, extension, ref, id, created)
         	case "audio" => Audio(email, comment, content, extension, ref, id, created)
         	case "s2t" => Speech2Text(email, comment, content, ref, id, created)
+        	case "video" => Video(email, comment, content, extension, ref, id, created)
        	}
     }
   }
@@ -57,18 +62,18 @@ object AssetDao {
 	Logger.debug("createAssetFromBase64:: Updated content for this capture to :: " + asset.content)
 	
 	createAssetOnFile(asset, base64Str)
-	// Save and return
+	create(asset)
+  }
+  
+  def create(asset: Asset): Asset = {
     val insertId = saveAsset(asset)
     
     asset match {
 	  case ic: Image => ic.copy(id = insertId)
 	  case ac: Audio => ac.copy(id = insertId)
+	  case s2t: Speech2Text => s2t.copy(id = insertId)
+	  case vc: Video => vc.copy(id = insertId)
 	}
-  }
-  
-  def create(s2t: Speech2Text): Speech2Text = {
-    val insertId = saveAsset(s2t)
-    s2t.copy(id = insertId)
   }
   
   private def saveAsset(asset: Asset): Long = {

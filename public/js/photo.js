@@ -83,7 +83,7 @@ window.snapPhoto = function( options ) {
     // default properties
     options.label = options.label || "Photo";
     options.header = options.header || "Send Photo feedback";
-    options.url = options.url || "/servercapture/capimg";
+    options.url = options.url || "/servercapture/captureimg";
     options.adapter = options.adapter || new window.snapPhoto.XHR( options.url );
     
     options.nextLabel = options.nextLabel || "Continue";

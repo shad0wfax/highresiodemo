@@ -13,6 +13,7 @@ import models.core.Capture
 import play.Logger
 import scalaj.http.Http
 import scalaj.http.MultiPart
+import models.core.Video
 
 
 /**
@@ -31,8 +32,15 @@ object Emailer {
   
   private def process(emailable: Emailable) = emailable match {
     case ic: Image => emailImageCapture(ic)
-    case s2tc: Speech2Text => emailS2TCapture(s2tc)
-    case ac: Audio => emailAudioCapture(ac)
+    
+    case s2tc: Speech2Text => emailWithouAttachment(s2tc, "Speech to text data sent: \n" + s2tc.speech2Text)
+    
+    case ac: Audio => emailWithouAttachment(ac, "Audio content has been sent. A link to it is : " + 
+    					"http://demo.visualrendezvous.com/core/stream?aid=" + ac.content + "&xtn=" + ac.extension + "&type=audio")
+    
+    case vc: Video => emailWithouAttachment(vc, "Video content has been sent. A link to it is : " + 
+    					"http://demo.visualrendezvous.com/core/stream?aid=" + vc.content + "&xtn=" + vc.extension + "&type=video")
+ 
     case _ => Logger.debug("Unknown Capture type passed: " + emailable + " Will not email");
   }
 
@@ -46,25 +54,15 @@ object Emailer {
       handle(response)
   }
   
-  private def emailS2TCapture(capture: Speech2Text) = {
+  private def emailWithouAttachment(capture: Capture, msg: String) = {
     val response = Http
       .post(url)
       .auth("api", key)
-      .params(sendParams(capture, "Speech to text data sent: \n" + capture.speech2Text))
+      .params(sendParams(capture, msg))
       .asString
       handle(response)
   }
-  
-  private def emailAudioCapture(capture: Audio) = {
-    val response = Http
-      .post(url)
-      .auth("api", key)
-      .params(sendParams(capture, "Audio content has been sent. A link to it is : " + 
-          "http://demo.visualrendezvous.com/core/stream?aid=" + capture.content + "&xtn=wav&type=audio"))
-      .asString
-      handle(response)
-  }
-  
+
   private def sendParams(capture: Capture, additionalText: String = ""): List[(String, String)] = {
     List("from" -> "Visual Rendezvous <postmaster@rendezvouswith.us.mailgun.org>",
      "to" -> capture.email,

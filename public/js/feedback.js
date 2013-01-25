@@ -85,8 +85,8 @@ window.Feedback = function( options ) {
     // default properties
     options.label = options.label || "Highlight";
     options.header = options.header || "Visual feedback";
-    // options.url = options.url || "http://127.0.0.1.xip.io:9000/servercapture/capimg";
-    options.url = options.url || "/servercapture/capimg";
+    // options.url = options.url || "http://127.0.0.1.xip.io:9000/servercapture/captureimg";
+    options.url = options.url || "/servercapture/captureimg";
     options.adapter = options.adapter || new window.Feedback.XHR( options.url );
     
     options.nextLabel = options.nextLabel || "Continue";

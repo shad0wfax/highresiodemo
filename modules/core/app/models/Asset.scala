@@ -31,12 +31,12 @@ trait FileAsset {
   def extension: String
   def assetId: String
   def url: String
+  def content: String = assetId
 }
 
 case class Image(val email: String, val comment: String, val imageId: String, val extension: String, 
   val ref: String, val id: Long = -1, val created: Date = new Date()) extends Asset with FileAsset {
 	def url: String = 	ImageResource(imageId + "." + extension).fileUrl
-	def content: String = imageId
 	def assetId: String = imageId
 	val assetType: String = "image"
 }
@@ -44,7 +44,6 @@ case class Image(val email: String, val comment: String, val imageId: String, va
 case class Audio(val email: String, val comment: String, val audioId: String, val extension: String, 
   val ref: String, val id: Long = -1,  val created: Date = new Date()) extends Asset with FileAsset {
 	def url: String = 	AudioResource(audioId + "." + extension).fileUrl
-	def content: String = audioId
 	def assetId: String = audioId
 	val assetType: String = "audio"
 }
@@ -54,3 +53,11 @@ case class Speech2Text(val email: String, val comment: String, val speech2Text: 
     def content: String = speech2Text
     val assetType: String = "s2t"
 }
+
+case class Video(val email: String, val comment: String, val vidId: String, val extension: String, 
+  val ref: String, val id: Long = -1,  val created: Date = new Date()) extends Asset with FileAsset {
+	def url: String = 	VideoResource(vidId + "." + extension).fileUrl
+	def assetId: String = vidId
+	val assetType: String = "video"
+}
+

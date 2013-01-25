@@ -11,6 +11,7 @@ import java.io.FileNotFoundException
 import models.core.CaptureResource
 import models.core.ImageResource
 import models.core.AudioResource
+import models.core.VideoResource
 
 /**
  * @author Akshay Sharma
@@ -18,12 +19,13 @@ import models.core.AudioResource
  */
 object AssetStreamer extends Controller {
   
-  // TODO: Make this chunked response for memory savings! 
+  // TODO: Make this chunked response for memory savings! - For now this is only serving and not streaming 
   def stream(assetId: String, xtn:String, assetType: String) = Action {
 
     val fileToServe: String = assetType match {
 	  case "image" => ImageResource(assetId + "." + xtn).fileUrl
 	  case "audio" => AudioResource(assetId + "." + xtn).fileUrl
+	  case "video" => VideoResource(assetId + "." + xtn).fileUrl
 	  case _ => "" 
 	}
 	val file = new java.io.File(fileToServe)
