@@ -20,7 +20,7 @@ object Helpdesk extends Controller {
   }
   
   def ticketsAll = Action {
-    val assets:Seq[Asset] = sortedAssets("all")
+    val assets:Seq[Asset] = sortedAssets()
     sendOk("All tickets received or created", "Tickets > All", "All tickets", "all", assets)
   }
   
@@ -30,7 +30,7 @@ object Helpdesk extends Controller {
   }
   
   def ticketsPhoto = Action {
-    val assets:Seq[Asset] = sortedAssets(CaptureConstants.PHOTO)
+    val assets:Seq[Asset] = sortedAssets(CaptureConstants.PHOTO, CaptureConstants.PHOTO_MOBILE)
     sendOk("All Photo Tickets", "Tickets > Photos", "Photos", "image", assets)
   }
   
@@ -40,7 +40,7 @@ object Helpdesk extends Controller {
   }
   
   def ticketsVideo = Action {
-    val assets:Seq[Asset] = sortedAssets(CaptureConstants.VIDEO_MOBILE)
+    val assets:Seq[Asset] = sortedAssets(CaptureConstants.VIDEO_MOBILE, CaptureConstants.VIDEO_WEB)
     sendOk("All Video Tickets", "Tickets > Videos", "Videos", "video", assets)
   }
   
@@ -61,12 +61,10 @@ object Helpdesk extends Controller {
     Ok(views.html.services.hdservices())	
   }
   
-  
-  
-  private def sortedAssets(ref: String): Seq[Asset] = {
+  private def sortedAssets(ref: String*): Seq[Asset] = {
     val assets = ref match { 
-	    case"all" => AssetDao.all
-	    case _ => AssetDao.allForRefs(ref)
+      case Nil => AssetDao.all
+      case _ => AssetDao.allForRefs(ref)
     }
     assets.sortWith((s, t) => s.created.compareTo(t.created) > 0)
   }

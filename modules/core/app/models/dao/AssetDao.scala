@@ -133,12 +133,21 @@ object AssetDao {
     }
   }
 
-  def allForRefs(ref: String): Seq[Asset] = {
+  def allForRefs(ref: Seq[String]): Seq[Asset] = {
     DB.withConnection { implicit connection =>
-      SQL("select * from asset_capture where ref = {ref}")
-      	.on("ref" -> ref)
-      	.as(AssetDao.simple *)
+//      val refStr: String = ref.mkString("',  '")
+//      Logger.debug("Selecting asset with ref string as ::" + refStr)
+      	
+//      SQL("select * from asset_capture where ref IN ({ref})")
+//      	.on("ref" -> refStr)
+//      	.as(AssetDao.simple *)
+      
+      // TODO: HUGE hole here -> Pron SQL Injection!!! The above should work but Anorm is screwing it up :(
+      // More info at: http://stackoverflow.com/questions/9528273/in-clause-in-anorm
+       SQL("select * from asset_capture where ref IN ('" + ref.mkString("', '") + "')")
+       	.as(AssetDao.simple *)
     }
+
   }
 
   def all(): Seq[Asset] = {
