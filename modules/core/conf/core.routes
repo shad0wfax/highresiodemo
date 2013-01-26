@@ -4,3 +4,4 @@
 
 # Serve assets
 GET 	/stream						controllers.core.asset.AssetStreamer.stream(aid:String, xtn:String, type:String)
+DELETE 	/asset/:id					controllers.core.asset.AssetHandler.delete(id: Long)

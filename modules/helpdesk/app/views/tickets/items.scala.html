@@ -21,6 +21,7 @@
 	      <th>Email</th>
 	      <th>Comment</th>
 	      <th>Date</th>
+	      <th>Delete</th>
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -35,12 +36,17 @@
 	  			@if(asset.assetType == "audio") {
 	  				<td><audio controls="controls"><source src="/core/stream?aid=@asset.content&xtn=wav&type=audio" /></audio></td>
 	  			} else {
-	  				<td>@asset.content.substring(0, Math.min(asset.content.length(), 37))...</td>
+	  				@if(asset.assetType == "video") {
+		  				<td><video controls="controls" width="100" height="100" class="hdimgzoom"/><source src="/core/stream?aid=@asset.content&xtn=mov&type=video" type="video/mp4"/></video></td>
+		  			} else {
+		  				<td>@asset.content.substring(0, Math.min(asset.content.length(), 37))...</td>
+		  			}
 	  			}
 	  		}
 			  	<td>@asset.email</td>
 			  	<td>@asset.comment.substring(0, Math.min(asset.comment.length(), 47))...</td>
 			  	<td>@{new SimpleDateFormat("MMM-dd-yyyy").format(asset.created)}</td>
+			  	<td><a href="javascript:void(0)" onclick="deleteAsset('/core/asset/@asset.id')"><i class="icon-trash"></i></a></td>
 		  </tr>
 	  	}
 		  

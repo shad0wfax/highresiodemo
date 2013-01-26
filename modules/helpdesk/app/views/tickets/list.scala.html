@@ -13,3 +13,14 @@
     </div> <!-- /container -->
     
 }
+<script type="text/javascript">
+	function deleteAsset(urlwithid) {
+		$.ajax({
+		    url: urlwithid,
+		    type: 'DELETE',
+		    success: function(result) {
+		      location.reload();
+		    }
+		});
+	}
+</script>

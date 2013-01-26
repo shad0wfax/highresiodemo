@@ -26,9 +26,10 @@ object HelpdeskDisplayUtil {
   
   def iconForAssetType(asset: Asset): String = (asset.ref: @unchecked) match {
     case CaptureConstants.HIGHLIGHT => "icon-pencil"
-    case CaptureConstants.PHOTO => "icon-camera"
+    case CaptureConstants.PHOTO | CaptureConstants.PHOTO_MOBILE => "icon-camera"
     case CaptureConstants.AUDIO_FLASH => "icon-headphones"
     case CaptureConstants.S2T => "icon-text-width"
+    case CaptureConstants.VIDEO_MOBILE | CaptureConstants.VIDEO_WEB => "icon-facetime-video"
   }
   
   def iconForAssets(assets: Seq[Asset], ref: String): String = ref match {
@@ -39,10 +40,10 @@ object HelpdeskDisplayUtil {
     }
   }
   
-  def countTickets(ref: String, groupedAssets: Map[String, Seq[Asset]]): String = {
+  def countTickets(ref: String, groupedAssets: Map[String, Seq[Asset]]): Int = {
     groupedAssets.get(ref) match {
-      case None => "0"
-      case Some(x) => "" + x.size
+      case None => 0
+      case Some(x) => x.size
     }
   }
   

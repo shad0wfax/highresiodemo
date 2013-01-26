@@ -26,6 +26,7 @@ import models.servercapture.CaptureAsset
 import models.core.Video
 import models.core.ImageResource
 import models.core.Image
+import models.core.CaptureConstants
 
 /**
  * @author Akshay Sharma
@@ -78,7 +79,7 @@ object Capture extends Controller {
 	  vid.ref.moveTo(vidRes.file)
 	  
 	  asyncSave(CaptureAsset(
-	    Video("creativeaisle@gmail.com", "Default comment - See my video", uniqueId, "mov", "mobi#video")))
+	    Video("creativeaisle@gmail.com", "Default comment - See my video", uniqueId, "mov", CaptureConstants.VIDEO_MOBILE)))
 	  
 	  Ok("File uploaded")
 	}.getOrElse {
@@ -94,7 +95,7 @@ object Capture extends Controller {
 	  pic.ref.moveTo(picRes.file)
 	  
 	  asyncSave(CaptureAsset(
-	    Image("creativeaisle@gmail.com", "Default comment - My thousand words", uniqueId, "mov", "mobi#photo")))
+	    Image("creativeaisle@gmail.com", "Default comment - My thousand words", uniqueId, "mov", CaptureConstants.PHOTO_MOBILE)))
 	  
 	  Ok("File uploaded")
 	}.getOrElse {

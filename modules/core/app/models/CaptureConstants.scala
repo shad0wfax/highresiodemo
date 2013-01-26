@@ -13,7 +13,8 @@ object CaptureConstants {
   val AUDIO_FLASH = "web#audioflash" 
   val S2T = "web#speech2text" 
   val VIDEO_WEB = "web#video" 
-  val VIDEO_MOBILE = "mobile#video" 
+  val VIDEO_MOBILE = "mobi#video" 
+  val PHOTO_MOBILE = "mobi#photo" 
   val SCREENRECORDING = "web#screenrecording"
   
 }

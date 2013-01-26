@@ -9,7 +9,7 @@ GET 	/tickets/highlights			controllers.helpdesk.Helpdesk.ticketsHighlight
 GET 	/tickets/photos			controllers.helpdesk.Helpdesk.ticketsPhoto
 GET 	/tickets/audios			controllers.helpdesk.Helpdesk.ticketsAudio
 GET 	/tickets/s2t			controllers.helpdesk.Helpdesk.ticketsS2T
-GET 	/tickets/videos			controllers.helpdesk.Helpdesk.comingSoon
+GET 	/tickets/videos			controllers.helpdesk.Helpdesk.ticketsVideo
 # GET 	/tickets/screenrecordings			controllers.helpdesk.Helpdesk.comingSoon
 GET 	/tickets/simple			controllers.helpdesk.Helpdesk.comingSoon
 GET 	/tickets/all			controllers.helpdesk.Helpdesk.ticketsAll

@@ -147,4 +147,12 @@ object AssetDao {
       	.as(AssetDao.simple *)
     }
   }
+  
+  def delete(id: Long) = {
+    DB.withConnection { implicit connection =>
+      SQL("delete from asset_capture where id = {id}")
+      	.on("id" -> id)
+      	.executeUpdate
+    }
+  }
 }

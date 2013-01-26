@@ -39,6 +39,11 @@ object Helpdesk extends Controller {
     sendOk("All Audio Tickets", "Tickets > Audios", "Audios", "audio", assets)
   }
   
+  def ticketsVideo = Action {
+    val assets:Seq[Asset] = sortedAssets(CaptureConstants.VIDEO_MOBILE)
+    sendOk("All Video Tickets", "Tickets > Videos", "Videos", "video", assets)
+  }
+  
   def ticketsS2T = Action {
     val assets:Seq[Asset] = sortedAssets(CaptureConstants.S2T)
     sendOk("All Speech to Text Tickets", "Tickets > Speech to Texts", "Speech2Texts", "s2t", assets)

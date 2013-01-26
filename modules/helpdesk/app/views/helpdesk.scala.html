@@ -21,7 +21,9 @@
 		  <div class="hdstat" data-hdurl="/helpdesk/tickets/photos">  			
 			<div class="statbox darkbluebg">
 		      <i class="icon-camera icon-white" style="margin-top: 8px;"></i>
-		      <span class="badge badge-important">@views.util.HelpdeskDisplayUtil.countTickets(CaptureConstants.PHOTO, stat)</span>
+		      <span class="badge badge-important">
+		      	@{views.util.HelpdeskDisplayUtil.countTickets(CaptureConstants.PHOTO, stat) + views.util.HelpdeskDisplayUtil.countTickets(CaptureConstants.PHOTO_MOBILE, stat)}
+		      </span>
 		      <span class="statlabel">Photos</span>
 		    </div>
 		  </div>
@@ -34,11 +36,21 @@
 		    </div>
 		  </div>
 	
-		  <div class="hdstat" data-hdurl="/helpdesk/tickets/s2t">  			
+		  <div class="hdstat" data-hdurl="/helpdesk/tickets/videos">  			
 			<div class="statbox darkbluegreenbg">
+		      <i class="icon-facetime-video icon-white" style="margin-top: 8px;"></i>
+		      <span class="badge badge-important">
+		      	@{views.util.HelpdeskDisplayUtil.countTickets(CaptureConstants.VIDEO_MOBILE, stat) + views.util.HelpdeskDisplayUtil.countTickets(CaptureConstants.VIDEO_WEB, stat)}
+		      </span>
+		      <span class="statlabel">Videos</span>
+		    </div>
+		  </div>
+	
+		  <div class="hdstat" data-hdurl="/helpdesk/tickets/s2t">  			
+			<div class="statbox bluebg">
 		      <i class="icon-text-width icon-white" style="margin-top: 8px;"></i>
 		      <span class="badge badge-important">@views.util.HelpdeskDisplayUtil.countTickets(CaptureConstants.S2T, stat)</span>
-		      <span class="statlabel">Speech to Text</span>
+		      <span class="statlabel">Speech/Text</span>
 		    </div>
 		 </div>
       </div>
