@@ -9,6 +9,7 @@ import play.api.mvc.Action
 import play.api.mvc.Controller
 import models.core.dao.AssetDao
 import models.core.Asset
+import play.Logger
 
 //
 
@@ -42,5 +43,13 @@ object Application extends Controller {
   def features = Action {
     Ok(views.html.features("Features - VisualRendezvous"))
   }
+ 
+  def test = Action {request =>
+    Logger.debug("Coming in - got the request")
+    Logger.debug(" request headers " + request.headers)
+    
+    Ok("Got it - 200")
+  }
+  
   
 }
