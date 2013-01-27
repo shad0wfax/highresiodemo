@@ -31,13 +31,13 @@
   	 	   	  <td><i class="@views.util.HelpdeskDisplayUtil.iconForAssetType(asset)"></i></td>
 		    }
 	  		@if(asset.assetType == "image") {
-	  			<td><img src="/core/stream?aid=@asset.content&xtn=png&type=image" class="hdimgzoom"/></td>
+	  			<td><img src="/core/stream?aid=@asset.content&xtn=@asset.asInstanceOf[FileAsset].extension&type=image" class="hdimgzoom"/></td>
 	  		} else {
 	  			@if(asset.assetType == "audio") {
-	  				<td><audio controls="controls"><source src="/core/stream?aid=@asset.content&xtn=wav&type=audio" /></audio></td>
+	  				<td><audio controls="controls"><source src="/core/stream?aid=@asset.content&xtn=@asset.asInstanceOf[FileAsset].extension&type=audio" /></audio></td>
 	  			} else {
 	  				@if(asset.assetType == "video") {
-		  				<td><video controls="controls" width="100" height="100" class="hdimgzoom"/><source src="/core/stream?aid=@asset.content&xtn=mov&type=video" type="video/mp4"/></video></td>
+		  				<td><video controls="controls" width="100" height="100" class="hdimgzoom"/><source src="/core/stream?aid=@asset.content&xtn=@asset.asInstanceOf[FileAsset].extension&type=video" type="video/mp4"/></video></td>
 		  			} else {
 		  				<td>@asset.content.substring(0, Math.min(asset.content.length(), 37))...</td>
 		  			}
