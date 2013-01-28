@@ -8,3 +8,4 @@ POST 	/captures2t						controllers.servercapture.capture.Capture.speechToText
 POST 	/captureflaudio						controllers.servercapture.capture.Capture.captureFlashAudio
 POST 	/capturemobivid						controllers.servercapture.capture.Capture.captureMobiVideo
 POST 	/capturemobipic						controllers.servercapture.capture.Capture.captureMobiPicture
+POST 	/captureemail						controllers.servercapture.capture.Capture.captureEmailPost
