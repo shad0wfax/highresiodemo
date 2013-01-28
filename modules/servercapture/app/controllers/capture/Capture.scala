@@ -28,6 +28,7 @@ import models.core.ImageResource
 import models.core.Image
 import models.core.CaptureConstants
 
+
 /**
  * @author Akshay Sharma
  * Jan 10, 2013
@@ -102,6 +103,16 @@ object Capture extends Controller {
 	  Ok("Not Ok!")
 	}
   }
+  
+  def captureEmailPost = Action(parse.urlFormEncoded(maxLength = 10 * 1024 * 1024)) { request =>
+    Logger.debug("Received email post with headers =>" + request.headers)
+    // TODO - handle spam stuff (X-Mailgun-SFlag) 
+    val body: Map[String, Seq[String]] = request.body
+    Logger.debug("Request body =>" + body)
+	  
+    Ok("200")
+  }
+ 
 
 
   
