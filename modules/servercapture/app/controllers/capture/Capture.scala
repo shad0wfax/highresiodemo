@@ -113,12 +113,22 @@ object Capture extends Controller {
     Ok("200")
   }
  
-  def testCaptureEmailPost = Action { request =>
+  def testCaptureEmailPost = Action(parse.multipartFormData) { request =>
     Logger.debug("Received email post with headers =>" + request.headers)
     // TODO - handle spam stuff (X-Mailgun-SFlag) 
-//    val body: Map[String, Seq[String]] = request.body
-    Logger.debug("Request body =>" + request.body)
+    val body: Map[String, Seq[String]] = request.body.asFormUrlEncoded
+    Logger.debug("Request body =>" + body)
+    
+    request.body.file("attachment-1").map { pic =>
+      val uniqueId = UUID.randomUUID().toString();
+	  val picRes = ImageResource(uniqueId + ".mov")
+	  // Create the file using play's infrastructure!
+	  pic.ref.moveTo(picRes.file)
 	  
+	  asyncSave(CaptureAsset(
+	    Image("creativeaisle@gmail.com", "Default comment - My thousand words", uniqueId, "mov", CaptureConstants.PHOTO_MOBILE)))
+	  
+	}
     Ok("200")
   }
  
