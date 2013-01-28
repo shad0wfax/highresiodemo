@@ -117,13 +117,13 @@ object Capture extends Controller {
     request.body.file("attachment-1").map { pic =>
       val assetRes = pic.filename match {
         case x if (x.toLowerCase().endsWith(".mov")) => {
-          (VideoResource(uniqueId + ".mov"), Video(sender, "Subject: subject\n" + "Body:\n" + bodyText , uniqueId, "mov", CaptureConstants.VIDEO_MOBILE)) 
+          (VideoResource(uniqueId + ".mov"), Video(sender, "Subject:" + subject + "\nBody:\n" + bodyText , uniqueId, "mov", CaptureConstants.VIDEO_MOBILE)) 
         }
         case y if (y.toLowerCase().endsWith(".mp4")) => {
-          (VideoResource(uniqueId + ".mp4"), Video(sender, "Subject: subject\n" + "Body:\n" + bodyText , uniqueId, "mp4", CaptureConstants.VIDEO_MOBILE))
+          (VideoResource(uniqueId + ".mp4"), Video(sender, "Subject: " + subject + "\nBody:\n" + bodyText , uniqueId, "mp4", CaptureConstants.VIDEO_MOBILE))
         }
         case _ => {
-          (ImageResource(uniqueId + ".png"), Image(sender, "Subject: subject\n" + "Body:\n" + bodyText , uniqueId, "png", CaptureConstants.PHOTO_MOBILE))
+          (ImageResource(uniqueId + ".png"), Image(sender, "Subject: " + subject + "\nBody:\n" + bodyText , uniqueId, "png", CaptureConstants.PHOTO_MOBILE))
         }
         
       }	
