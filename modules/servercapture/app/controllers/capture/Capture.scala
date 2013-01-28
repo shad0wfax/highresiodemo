@@ -123,7 +123,7 @@ object Capture extends Controller {
           (VideoResource(uniqueId + ".mp4"), Video(sender, "Subject: subject\n" + "Body:\n" + bodyText , uniqueId, "mp4", CaptureConstants.VIDEO_MOBILE))
         }
         case _ => {
-          (ImageResource(uniqueId + ".png"), Image(sender, "Subject: subject\n" + "Body:\n" + bodyText , uniqueId, "mov", CaptureConstants.PHOTO_MOBILE))
+          (ImageResource(uniqueId + ".png"), Image(sender, "Subject: subject\n" + "Body:\n" + bodyText , uniqueId, "png", CaptureConstants.PHOTO_MOBILE))
         }
         
       }	
