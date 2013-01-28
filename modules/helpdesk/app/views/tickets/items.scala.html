@@ -31,7 +31,7 @@
   	 	   	  <td><i class="@views.util.HelpdeskDisplayUtil.iconForAssetType(asset)"></i></td>
 		    }
 	  		@if(asset.assetType == "image") {
-	  			<td><img src="/core/stream?aid=@asset.content&xtn=@asset.asInstanceOf[FileAsset].extension&type=image" class="hdimgzoom"/></td>
+	  			<td><img src="/core/serve?aid=@asset.content&xtn=@asset.asInstanceOf[FileAsset].extension&type=image" class="hdimgzoom"/></td>
 	  		} else {
 	  			@if(asset.assetType == "audio") {
 	  				<td><audio controls="controls"><source src="/core/stream?aid=@asset.content&xtn=@asset.asInstanceOf[FileAsset].extension&type=audio" /></audio></td>

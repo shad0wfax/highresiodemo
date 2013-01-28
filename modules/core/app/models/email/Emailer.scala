@@ -23,6 +23,7 @@ import models.core.Video
 object Emailer {
   private val key = "key-0qiaqkgo4ts6zczzwdt808e4-rk-31w3"
   private val url = "https://api.mailgun.net/v2/rendezvouswith.us.mailgun.org/messages"
+  private val stream_url = "http://demo.visualrendezvous.com/core/stream?"
 	
   def send(emailable: Emailable) = emailable.email match {
     case null => Logger.debug("Was passed null as email")
@@ -36,10 +37,10 @@ object Emailer {
     case s2tc: Speech2Text => emailWithouAttachment(s2tc, "Speech to text data sent: \n" + s2tc.speech2Text)
     
     case ac: Audio => emailWithouAttachment(ac, "Audio content has been sent. A link to it is : " + 
-    					"http://demo.visualrendezvous.com/core/stream?aid=" + ac.content + "&xtn=" + ac.extension + "&type=audio")
+    					stream_url + "aid=" + ac.content + "&xtn=" + ac.extension + "&type=audio")
     
     case vc: Video => emailWithouAttachment(vc, "Video content has been sent. A link to it is : " + 
-    					"http://demo.visualrendezvous.com/core/stream?aid=" + vc.content + "&xtn=" + vc.extension + "&type=video")
+    					stream_url + "aid=" + vc.content + "&xtn=" + vc.extension + "&type=video")
  
     case _ => Logger.debug("Unknown Capture type passed: " + emailable + " Will not email");
   }
