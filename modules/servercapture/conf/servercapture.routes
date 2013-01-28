@@ -9,5 +9,3 @@ POST 	/captureflaudio						controllers.servercapture.capture.Capture.captureFlas
 POST 	/capturemobivid						controllers.servercapture.capture.Capture.captureMobiVideo
 POST 	/capturemobipic						controllers.servercapture.capture.Capture.captureMobiPicture
 POST 	/captureemail						controllers.servercapture.capture.Capture.captureEmailPost
-
-POST 	/testcaptureemail						controllers.servercapture.capture.Capture.testCaptureEmailPost

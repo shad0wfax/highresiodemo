@@ -104,29 +104,31 @@ object Capture extends Controller {
 	}
   }
   
-  def captureEmailPost = Action(parse.urlFormEncoded(maxLength = 10 * 1024 * 1024)) { request =>
-    Logger.debug("Received email post with headers =>" + request.headers)
-    // TODO - handle spam stuff (X-Mailgun-SFlag) 
-    val body: Map[String, Seq[String]] = request.body
-    Logger.debug("Request body =>" + body)
-	  
-    Ok("200")
-  }
- 
-  def testCaptureEmailPost = Action(parse.multipartFormData) { request =>
+  def captureEmailPost = Action(parse.multipartFormData) { request =>
     Logger.debug("Received email post with headers =>" + request.headers)
     // TODO - handle spam stuff (X-Mailgun-SFlag) 
     val body: Map[String, Seq[String]] = request.body.asFormUrlEncoded
     Logger.debug("Request body =>" + body)
+    val sender: String = body.get("from").get(0)
+    val subject: String = body.get("subject").get(0)
+    val bodyText: String = body.get("stripped-text").get(0)
+    val uniqueId = UUID.randomUUID().toString();
     
     request.body.file("attachment-1").map { pic =>
-      val uniqueId = UUID.randomUUID().toString();
-	  val picRes = ImageResource(uniqueId + ".mov")
-	  // Create the file using play's infrastructure!
-	  pic.ref.moveTo(picRes.file)
-	  
-	  asyncSave(CaptureAsset(
-	    Image("creativeaisle@gmail.com", "Default comment - My thousand words", uniqueId, "mov", CaptureConstants.PHOTO_MOBILE)))
+      val assetRes = pic.filename match {
+        case x if (x.toLowerCase().endsWith(".mov")) => {
+          (VideoResource(uniqueId + ".mov"), Video(sender, "Subject: subject\n" + "Body:\n" + bodyText , uniqueId, "mov", CaptureConstants.VIDEO_MOBILE)) 
+        }
+        case y if (y.toLowerCase().endsWith(".mp4")) => {
+          (VideoResource(uniqueId + ".mp4"), Video(sender, "Subject: subject\n" + "Body:\n" + bodyText , uniqueId, "mp4", CaptureConstants.VIDEO_MOBILE))
+        }
+        case _ => {
+          (ImageResource(uniqueId + ".png"), Image(sender, "Subject: subject\n" + "Body:\n" + bodyText , uniqueId, "mov", CaptureConstants.PHOTO_MOBILE))
+        }
+        
+      }	
+	  pic.ref.moveTo(assetRes._1.file)
+	  asyncSave(CaptureAsset(assetRes._2))
 	  
 	}
     Ok("200")
