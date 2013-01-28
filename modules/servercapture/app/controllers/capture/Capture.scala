@@ -113,6 +113,15 @@ object Capture extends Controller {
     Ok("200")
   }
  
+  def testCaptureEmailPost = Action { request =>
+    Logger.debug("Received email post with headers =>" + request.headers)
+    // TODO - handle spam stuff (X-Mailgun-SFlag) 
+//    val body: Map[String, Seq[String]] = request.body
+    Logger.debug("Request body =>" + request.body)
+	  
+    Ok("200")
+  }
+ 
 
 
   
