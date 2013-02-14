@@ -65,7 +65,7 @@ object Emailer {
   }
 
   private def sendParams(capture: Capture, additionalText: String = ""): List[(String, String)] = {
-    List("from" -> "Visual Rendezvous <postmaster@rendezvouswith.us.mailgun.org>",
+    List("from" -> "HighresIO <postmaster@rendezvouswith.us.mailgun.org>",
      "to" -> capture.email,
      "subject" -> "Regarding your issue/feedback",
      "text" -> ("We received your inputs and we will be following up with you shortly.\nHere is a reference of what you sent us:\nComments: " 

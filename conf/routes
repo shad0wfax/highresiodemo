@@ -23,4 +23,4 @@ GET     /crossdomain.xml            controllers.Assets.at(path="/public", file="
 
 
 # Testing with Supreeth
-GET 		/test					controllers.Application.test
+#GET 		/test					controllers.Application.test
