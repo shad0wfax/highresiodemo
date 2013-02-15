@@ -364,7 +364,7 @@ window.speech2Text.Photo.prototype.start = function( modal, modalHeader, modalFo
         
         var mic = document.createElement("input");
         mic.id = "vrendezvous-mic";
-        mic.size = "0";
+//        mic.size = "0";
         mic.style.border = "0";
         mic.style.visibility = "hidden";
         mic.style.display = "none";

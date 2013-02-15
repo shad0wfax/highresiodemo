@@ -1,5 +1,5 @@
 /**
- * copyright VisualRendezvous
+ * copyright HighresIO
  */
 package controllers
 
@@ -20,28 +20,28 @@ import play.Logger
 object Application extends Controller {
   
   def index = Action {
-    Ok(views.html.demo("Demo - VisualRendezvous"))
+    Ok(views.html.demo("Demo - HighresIO"))
   }
   
   def dashboard = Action {
     val assets:Seq[Asset] = AssetDao.all.sortWith((s, t) => s.created.compareTo(t.created) > 0)
-    Ok(views.html.dashboard("Dashboard - VisualRendezvous", assets))
+    Ok(views.html.dashboard("Dashboard - HighresIO", assets))
   }
   
   def how = Action {
-    Ok(views.html.how("How it works - VisualRendezvous"))
+    Ok(views.html.how("How it works - HighresIO"))
   }
   
   def about = Action {
-    Ok(views.html.about("About - VisualRendezvous"))
+    Ok(views.html.about("About - HighresIO"))
   }
   
   def usecase = Action {
-    Ok(views.html.usecase("Usecases - VisualRendezvous"))
+    Ok(views.html.usecase("Usecases - HighresIO"))
   }
   
   def features = Action {
-    Ok(views.html.features("Features - VisualRendezvous"))
+    Ok(views.html.features("Features - HighresIO"))
   }
  
   def test = Action {request =>
