@@ -328,6 +328,7 @@ window.audio.Photo.prototype.start = function( modal, modalHeader, modalFooter, 
         var speakOn = false;
         var speakOnLabel = this.options.speakOnLabel;
         var	speakOffLabel = this.options.speakOffLabel;
+        var _swfurl = this.options.swfurl;
         
         var anim = document.createElement('div');
         anim.id = "vrendezvous-audio-anim";
@@ -355,7 +356,10 @@ window.audio.Photo.prototype.start = function( modal, modalHeader, modalFooter, 
             	micon = true;
             	
             	try {
-                	Wami.setup("vrendezvous-wami");
+                	Wami.setup({
+                        id: "vrendezvous-wami",
+                        swfurl: _swfurl
+                    });
             	} catch( e ) {
                     log("Error in setting up wami: " + e.message);
                 }
