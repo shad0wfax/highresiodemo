@@ -6,3 +6,4 @@
 GET 	/serve						controllers.core.asset.AssetStreamer.serve(aid:String, xtn:String, type:String)
 GET 	/stream						controllers.core.asset.AssetStreamer.stream(aid:String, xtn:String, type:String)
 DELETE 	/asset/:id					controllers.core.asset.AssetHandler.delete(id: Long)
+GET 	/improxy					controllers.core.asset.ImageProxy.improxy()

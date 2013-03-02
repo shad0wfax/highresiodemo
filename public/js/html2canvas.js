@@ -2267,7 +2267,7 @@ _html2canvas.Preload = function( options ) {
                 start();
             } else {
                 setImageLoadHandlers(img, imageObj);
-                img.src = a;
+                 img.src = a;
             }
             window[callback_name] = undefined; // to work with IE<9  // NOTE: that the undefined callback property-name still exists on the window object (for IE<9)
             try {
@@ -2711,7 +2711,8 @@ html2canvas = function( elements, opts ) {
         elements: elements,
 
         // preload options
-        proxy: "http://html2canvas.appspot.com/",
+        //proxy: "http://html2canvas.appspot.com/",
+        proxy: "http://pub.dev:9000/core/improxy",
         timeout: 0,    // no timeout
         useCORS: false, // try to load images as CORS (where available), before falling back to proxy
         allowTaint: false, // whether to allow images to taint the canvas, won't need proxy if set to true
