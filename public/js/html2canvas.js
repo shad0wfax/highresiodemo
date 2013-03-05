@@ -2712,7 +2712,8 @@ html2canvas = function( elements, opts ) {
 
         // preload options
         //proxy: "http://html2canvas.appspot.com/",
-        proxy: "http://pub.dev:9000/core/improxy",
+        // Defaulting proxy to http://pub.dev:9000/core/improxy but this has to change!
+        proxy: opts.proxyurl || "http://pub.dev:9000/core/improxy",
         timeout: 0,    // no timeout
         useCORS: false, // try to load images as CORS (where available), before falling back to proxy
         allowTaint: false, // whether to allow images to taint the canvas, won't need proxy if set to true
